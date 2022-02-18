@@ -1,6 +1,6 @@
-import { Store, DiscountOffer } from "./store";
+import { Store, DiscountOffer } from "./src";
 
-import fs from "fs";
+// import fs from "fs";
 
 const discountOffers = [
   new DiscountOffer("Velib", 20, 30),
@@ -10,19 +10,21 @@ const discountOffers = [
 ];
 const store = new Store(discountOffers);
 
-const log = [];
+// const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(store.updateDiscounts()));
-  console.log(log[elapsedDays]);
+  // log.push(JSON.stringify(store.updateDiscounts()));
+  // console.log(log[elapsedDays]);
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(store.updateDiscounts()));
 }
 
-/* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
-  if (err) {
-    console.log("error");
-  } else {
-    console.log("success");
-  }
-});
-/* eslint-enable no-console */
+// /* eslint-disable no-console */
+// fs.writeFile("output.txt", log, err => {
+//   if (err) {
+//     console.log("error");
+//   } else {
+//     console.log("success");
+//   }
+// });
+// /* eslint-enable no-console */
