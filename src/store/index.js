@@ -1,4 +1,1 @@
-export {
-  DiscountOffer, 
-  Store,
-} from "./store";
+export { DiscountOffer, Store } from "./store";
