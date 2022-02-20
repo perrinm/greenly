@@ -1,19 +1,41 @@
 /* eslint-disable no-unused-vars */
+
+export type DiscountOfferType = {
+  partnerName: string;
+  expiresIn: number;
+  discountInPercent: number;
+};
+
 export class DiscountOffer {
-  constructor(partnerName, expiresIn, discountRateInPercent) {
+  partnerName: string;
+  expiresIn: number;
+  discountInPercent: number;
+
+  constructor(
+    partnerName: string,
+    expiresIn: number,
+    discountRateInPercent: number
+  ) {
     this.partnerName = partnerName;
     this.expiresIn = expiresIn;
     this.discountInPercent = discountRateInPercent;
   }
 }
 
+export type StoreType = {
+  discountOffers: Array<DiscountOfferType>;
+  updateDiscounts: Function;
+};
+
 export class Store {
-  constructor(discountOffers = []) {
+  discountOffers: Array<DiscountOfferType>;
+
+  constructor(discountOffers: Array<DiscountOfferType> = []) {
     this.discountOffers = discountOffers;
   }
 
   // Function to update Naturalia partner
-  updateNaturalia(naturalia) {
+  updateNaturalia(naturalia: DiscountOfferType): void {
     naturalia.discountInPercent =
       naturalia.expiresIn > 0
         ? (naturalia.discountInPercent += 1)
@@ -23,7 +45,7 @@ export class Store {
   }
 
   // Method to update Vinted partner
-  updateVinted(vinted) {
+  updateVinted(vinted: DiscountOfferType): void {
     if (vinted.expiresIn <= 10 && vinted.expiresIn > 5) {
       vinted.discountInPercent += 2;
     } else if (vinted.expiresIn <= 5) {
@@ -40,7 +62,7 @@ export class Store {
   }
 
   // Method to update Velib partner
-  updateVelib(velib) {
+  updateVelib(velib: DiscountOfferType): void {
     if (velib.discountInPercent > 0) {
       velib.discountInPercent =
         velib.expiresIn > 0
@@ -52,7 +74,7 @@ export class Store {
   }
 
   // Method to update BackMarket partner
-  updateBackMarket(backmarket) {
+  updateBackMarket(backmarket: DiscountOfferType): void {
     backmarket.discountInPercent -= 2;
 
     if (backmarket.discountInPercent < 0) {
@@ -62,7 +84,7 @@ export class Store {
     backmarket.expiresIn -= 1;
   }
   // Main method to update partners
-  updateDiscounts() {
+  updateDiscounts(): Array<DiscountOfferType> {
     for (const discountOffer of this.discountOffers) {
       const { partnerName } = discountOffer;
 

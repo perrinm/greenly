@@ -1,17 +1,20 @@
-import { Store, DiscountOffer } from "./src";
+import { Store, DiscountOffer } from "./store";
 
 import fs from "fs";
 
-const discountOffers = [
+import { DiscountOfferType, StoreType } from "./store";
+
+const discountOffers: Array<DiscountOfferType> = [
   new DiscountOffer("Velib", 20, 30),
   new DiscountOffer("Naturalia", 10, 5),
   new DiscountOffer("Vinted", 5, 40),
   new DiscountOffer("Ilek", 15, 40),
   new DiscountOffer("BackMarket", 20, 40)
 ];
-const store = new Store(discountOffers);
 
-const logs = [];
+const store: StoreType = new Store(discountOffers);
+
+const logs: Array<string> = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   logs.push(JSON.stringify(store.updateDiscounts()) + "\n");
