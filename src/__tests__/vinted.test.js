@@ -16,4 +16,9 @@ describe("Vinted partner", () => {
       new Store([new DiscountOffer("Vinted", 0, 12)]).updateDiscounts()
     ).toEqual([new DiscountOffer("Vinted", -1, 0)]);
   });
+  it("Vinted's discount drops to 0 after the expiration date", () => {
+    expect(
+      new Store([new DiscountOffer("Vinted", 0, 12)]).updateDiscounts()
+    ).toEqual([new DiscountOffer("Vinted", -1, 0)]);
+  });
 });

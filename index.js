@@ -13,9 +13,9 @@ const store = new Store(discountOffers);
 const logs = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  logs.push(JSON.stringify(store.updateDiscounts()));
+  logs.push(JSON.stringify(store.updateDiscounts()) + "\n");
   // eslint-disable-next-line no-console
-  console.log(JSON.stringify(store.updateDiscounts()));
+  // console.log(JSON.stringify(store.updateDiscounts()));
 }
 
 /* eslint-disable no-console */
