@@ -51,6 +51,16 @@ export class Store {
     velib.expiresIn -= 1;
   }
 
+  // Method to update BackMarket partner
+  updateBackMarket(backmarket) {
+    backmarket.discountInPercent -= 2;
+
+    if (backmarket.discountInPercent < 0) {
+      backmarket.discountInPercent = 0;
+    }
+
+    backmarket.expiresIn -= 1;
+  }
   // Main method to update partners
   updateDiscounts() {
     for (const discountOffer of this.discountOffers) {
@@ -65,6 +75,9 @@ export class Store {
           break;
         case "Velib":
           this.updateVelib(discountOffer);
+          break;
+        case "BackMarket":
+          this.updateBackMarket(discountOffer);
           break;
         default:
           break;
